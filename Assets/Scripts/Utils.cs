@@ -1,8 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Linq;
 
 public class Utils
 {
@@ -46,7 +44,7 @@ public class Utils
 				if (tile.gameObject.CompareTag("Tile")) {
 					BaseObject obj = ObjectAtPosition(tile.position);
 					if (obj != null && obj.transform != root) {
-						root.position += Vector3.back;
+						root.position += Vector3.up;
 						intersecting = true;
 					}
 				}
@@ -60,7 +58,7 @@ public class Utils
     		intersecting = false;
 
 			if (!TileIsEmpty(v)) {
-				v += Vector3.back;
+				v += Vector3.up;
 				intersecting = true;
 			}
     	}

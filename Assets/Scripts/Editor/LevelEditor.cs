@@ -490,7 +490,7 @@ public class LevelEditor : EditorWindow {
 
 		Vector3 currentPos = GetPosition(e.mousePosition);
 		if (selGridInt != 1) {
-			currentPos += (Vector3.back * spawnHeight);
+			currentPos += (Vector3.up * spawnHeight);
 			currentPos = Utils.AvoidIntersect(currentPos);
 		}
 
@@ -509,7 +509,7 @@ public class LevelEditor : EditorWindow {
 			if (eventType == EventType.ScrollWheel) {
 				int deltaY = (e.delta.y < 0) ? -1 : 1;
 				spawnHeight += deltaY;
-				currentPos += (Vector3.back * deltaY);
+				currentPos += (Vector3.up * deltaY);
 				e.Use();
 			}
 
@@ -577,7 +577,7 @@ public class LevelEditor : EditorWindow {
 				return Utils.Vec3ToInt(pos);
 			}
 
-			Plane hPlane = new Plane(Vector3.forward, Vector3.zero);
+			Plane hPlane = new Plane(Vector3.up, Vector3.zero);
    			float distance = 0; 
 			if (hPlane.Raycast(ray, out distance)){
 				return Utils.Vec3ToInt(ray.GetPoint(distance));
@@ -628,7 +628,7 @@ public class LevelEditor : EditorWindow {
 
 			Vector3 p = newGameObject.transform.position;
 			if (spawnHeight < p.z) {
-				newGameObject.transform.position = new Vector3(p.x, p.y, -Mathf.Abs(spawnHeight));
+				newGameObject.transform.position = new Vector3(p.x, Mathf.Abs(spawnHeight), p.z);
 			} 
 			
 			Utils.AvoidIntersect(newGameObject.transform);

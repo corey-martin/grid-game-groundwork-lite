@@ -1,9 +1,8 @@
-# Grid Game Groundwork for Unity
+# Grid Game Groundwork Lite for Unity
 
-A Unity project & level editor for making grid-based/block-pushing/Sokoban-like games.  
+A Unity project & level editor for making 3D grid-based games.  
+Based on https://github.com/mytoboggan/grid-game-groundwork, with less assumptions.  
 Made with Unity 2019.x LTS  
-
-![Example GIF](https://raw.githubusercontent.com/mytoboggan/grid-game-groundwork/master/ggg-demo.gif)
 
 ## Dependencies:
 DOTween by Demigiant  
@@ -11,7 +10,6 @@ http://dotween.demigiant.com/
 https://assetstore.unity.com/packages/tools/animation/dotween-hotween-v2-27676
 
 ## Setting Up Scenes:
-- Add the "GameController" prefab to the scene  
 See "Example.unity"  
 
 ## Using the Editor:
@@ -23,31 +21,16 @@ The editor window can be found under "Window" -> "Level Editor".
 
 _Note: Selecting "Erase" will clear any objects at that position._
 
-## Deeper Dive:
+## Setting up prefabs:
 
-The project assumes plenty about what kind of game you want to make, but there are no rules about friction or win conditions. There are two main object types that you can use in scenes, Wall and Mover.
-
-I typically make objects derive from the Mover class (as the Player class does). Walls and Movers both need child gameObjects with a Box Collider component and tagged with "Tile". See the prefabs "Crate" and "Crate L" under `Assets/Resources` for examples of single-tile and multi-tile Movers.
+Any prefab that you'd like to draw with the editor will need a `BaseObject` component on its root (or
+a class that derives from `BaseObject`). It will also need one or more child gameobjects tagged with "Tile", each with a
+`BoxCollider` component. See the `L-Shape` prefab under `Assets/Resources` for an example.
 
 ## Class Breakdown:
 
-### Mover:
-Things that can move and fall and that should be tracked for the undo system.
-
-### Wall:
-Static things you should not be able to move and that should stop you from moving, including the ground.
-
-### Player:
-Derives from Mover, handles character movement input. There should only be one Player in the scene.
-
-### Game:
-Manages movers, walls and undo/reset input.
-
-### SaveData:
-For saving persistent data, like a list of beaten levels by name/string.
-
-### State:
-Tracks the undo stack.
+### BaseObject:
+Component for objects that the editor can draw
 
 ### Utils:
 General utilities class
@@ -56,4 +39,4 @@ General utilities class
 For caching yield instructions, borrowed from... somewhere on the internet years ago.
 
 ### LevelEditor:
-The EditorWindow class (see "Using the Editor" above)
+The `EditorWindow` class (see "Using the Editor" above)
