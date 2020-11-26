@@ -4,11 +4,6 @@ A Unity project & level editor for making 3D grid-based games.
 Based on https://github.com/mytoboggan/grid-game-groundwork, with less assumptions.  
 Made with Unity 2019.x LTS  
 
-## Dependencies:
-DOTween by Demigiant  
-http://dotween.demigiant.com/  
-https://assetstore.unity.com/packages/tools/animation/dotween-hotween-v2-27676
-
 ## Setting Up Scenes:
 See "Example.unity"  
 
